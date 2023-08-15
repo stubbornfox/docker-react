@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true stubbornfox/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-ebs"
+  env: "Docker-ebs-env"
+  bucket_name: "elasticbeanstalk-us-east-1-088374349697"
+  bucket_path: "docker-ebs"
+  on:
+    branch: main
+  access_key_id: $aws_access_key
+  secret_key_id: $aws_secret_key
